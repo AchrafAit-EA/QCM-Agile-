@@ -11,7 +11,7 @@ const QUIZ_QUESTIONS = [
             "C) Un ensemble de tâches informatiques libres sans contraintes de budget ni de calendrier imposé.",
             "D) Un contrat juridique exclusivement conclu entre des prestataires externes sans intervention du client."
         ],
-        correctIndex: 1,
+        correctIndex: 1 ,
         explanation: "Selon le cours (Module 202 - Partie 1), un projet est « une démarche temporaire (un début et une fin) visant à créer un produit, service ou résultat unique. Il mobilise des ressources identifiées (humaines et matérielles) et fait l'objet d'une budgétisation de moyens »."
     },
     {
@@ -497,40 +497,40 @@ function getOptionButtonClass(optIdx, chosenAnswer, isAlreadyAnswered, correctId
     let base = "w-full p-4 rounded-xl border-2 text-left transition-all duration-200 flex items-center justify-between ";
 
     if (!isAlreadyAnswered) {
-        return base + "border-slate-200 bg-white hover:border-indigo-300 hover:bg-indigo-50/20 active:scale-[0.99]";
+        return base + "border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-800/60 hover:border-indigo-300 dark:hover:border-indigo-500 hover:bg-indigo-50/20 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 active:scale-[0.99]";
     }
 
-    // Mode entraînement : révéler immédiatement les bonnes et mauvaises réponses
+    // In Practice Mode: reveal colors instantly
     if (quizMode === 'practice') {
         if (optIdx === correctIdx) {
-            return base + "border-emerald-500 bg-emerald-50 text-emerald-900";
+            return base + "border-emerald-500 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-900 dark:text-emerald-200";
         }
         if (optIdx === chosenAnswer && optIdx !== correctIdx) {
-            return base + "border-rose-500 bg-rose-50 text-rose-900";
+            return base + "border-rose-500 bg-rose-50 dark:bg-rose-950/60 text-rose-900 dark:text-rose-200";
         }
-        return base + "border-slate-200 bg-slate-50 opacity-60";
+        return base + "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 opacity-50 text-slate-400 dark:text-slate-500";
     }
 
-    // Mode examen : surligner uniquement le choix sans divulguer la réponse
+    // In Exam Mode: only highlight user selection neutral indigo
     if (optIdx === chosenAnswer) {
-        return base + "border-indigo-600 bg-indigo-50/60 font-semibold";
+        return base + "border-indigo-600 dark:border-indigo-500 bg-indigo-50/60 dark:bg-indigo-950/50 font-semibold text-slate-900 dark:text-white";
     }
-    return base + "border-slate-200 bg-white hover:border-slate-300";
+    return base + "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 text-slate-800 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600";
 }
 
 function getOptionPrefixBadgeClass(optIdx, chosenAnswer, isAlreadyAnswered, correctIdx) {
     if (!isAlreadyAnswered) {
-        return "bg-slate-100 text-slate-700 border border-slate-200";
+        return "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600";
     }
     if (quizMode === 'practice') {
         if (optIdx === correctIdx) return "bg-emerald-600 text-white";
         if (optIdx === chosenAnswer && optIdx !== correctIdx) return "bg-rose-600 text-white";
-        return "bg-slate-200 text-slate-600";
+        return "bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400";
     }
     if (optIdx === chosenAnswer) {
         return "bg-indigo-600 text-white";
     }
-    return "bg-slate-100 text-slate-700 border border-slate-200";
+    return "bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600";
 }
 
 function handleSelectOption(optIdx) {
@@ -631,11 +631,11 @@ function updateNavGridVisuals() {
         if (isCurrent) {
             btn.className = "h-9 rounded-lg text-xs font-extrabold border-2 border-indigo-600 bg-indigo-600 text-white shadow-sm";
         } else if (isFlagged) {
-            btn.className = "h-9 rounded-lg text-xs font-bold border-2 border-amber-400 bg-amber-50 text-amber-900";
+            btn.className = "h-9 rounded-lg text-xs font-bold border-2 border-amber-400 bg-amber-50 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300";
         } else if (isAnswered) {
-            btn.className = "h-9 rounded-lg text-xs font-bold border border-slate-700 bg-slate-800 text-white";
+            btn.className = "h-9 rounded-lg text-xs font-bold border border-slate-700 dark:border-slate-600 bg-slate-800 dark:bg-slate-700 text-white";
         } else {
-            btn.className = "h-9 rounded-lg text-xs font-medium border border-slate-200 bg-white text-slate-600 hover:bg-slate-50";
+            btn.className = "h-9 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700";
         }
     });
 }
@@ -757,9 +757,9 @@ function filterReviewQuestions(type) {
     ['all', 'wrong', 'correct'].forEach(btnType => {
         const el = document.getElementById(`filter-btn-${btnType}`);
         if (btnType === type) {
-            el.className = "px-3 py-1.5 rounded-lg bg-white shadow-sm text-slate-900 font-bold transition-all";
+            el.className = "px-3 py-1.5 rounded-lg bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white font-bold transition-all";
         } else {
-            el.className = "px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 transition-all";
+            el.className = "px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-all";
         }
     });
 
@@ -776,27 +776,27 @@ function filterReviewQuestions(type) {
         const card = document.createElement('div');
         card.className = `rounded-2xl p-5 sm:p-6 border transition-all ${
             isCorrect 
-                ? 'bg-white border-slate-200' 
-                : 'bg-white border-rose-200 shadow-sm shadow-rose-100/50'
+                ? 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800' 
+                : 'bg-white dark:bg-slate-900 border-rose-200 dark:border-rose-900/60 shadow-sm shadow-rose-100/50 dark:shadow-none'
         }`;
 
         let statusBadge = isCorrect 
-            ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"><i class="fa-solid fa-circle-check"></i> Réponse Correcte</span>`
-            : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200"><i class="fa-solid fa-circle-xmark"></i> Erreur Commise</span>`;
+            ? `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"><i class="fa-solid fa-circle-check"></i> Réponse Correcte</span>`
+            : `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800"><i class="fa-solid fa-circle-xmark"></i> Erreur Commise</span>`;
 
         let optionsHTML = '';
         q.options.forEach((optText, optIdx) => {
             const isUserPick = optIdx === userChoice;
             const isRightAnswer = optIdx === q.correctIndex;
 
-            let optStyle = "border-slate-100 bg-slate-50 text-slate-700";
-            let markerIcon = `<span class="w-6 h-6 rounded-md bg-white border border-slate-200 font-bold text-xs flex items-center justify-center">${String.fromCharCode(65 + optIdx)}</span>`;
+            let optStyle = "border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300";
+            let markerIcon = `<span class="w-6 h-6 rounded-md bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 font-bold text-xs flex items-center justify-center text-slate-700 dark:text-slate-200">${String.fromCharCode(65 + optIdx)}</span>`;
 
             if (isRightAnswer) {
-                optStyle = "border-emerald-300 bg-emerald-50 font-semibold text-emerald-950 ring-1 ring-emerald-400";
+                optStyle = "border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-950/50 font-semibold text-emerald-950 dark:text-emerald-200 ring-1 ring-emerald-400";
                 markerIcon = `<span class="w-6 h-6 rounded-md bg-emerald-600 text-white font-bold text-xs flex items-center justify-center"><i class="fa-solid fa-check"></i></span>`;
             } else if (isUserPick && !isRightAnswer) {
-                optStyle = "border-rose-300 bg-rose-50 font-semibold text-rose-950 ring-1 ring-rose-400";
+                optStyle = "border-rose-300 dark:border-rose-700 bg-rose-50 dark:bg-rose-950/50 font-semibold text-rose-950 dark:text-rose-200 ring-1 ring-rose-400";
                 markerIcon = `<span class="w-6 h-6 rounded-md bg-rose-600 text-white font-bold text-xs flex items-center justify-center"><i class="fa-solid fa-xmark"></i></span>`;
             }
 
@@ -805,8 +805,8 @@ function filterReviewQuestions(type) {
                     ${markerIcon}
                     <div class="flex-1">
                         <span>${optText.substring(3)}</span>
-                        ${isUserPick && !isRightAnswer ? '<span class="ml-2 text-rose-600 font-bold text-xs block sm:inline">(Votre choix incorrect)</span>' : ''}
-                        ${isRightAnswer ? '<span class="ml-2 text-emerald-700 font-bold text-xs block sm:inline">(Bonne réponse)</span>' : ''}
+                        ${isUserPick && !isRightAnswer ? '<span class="ml-2 text-rose-600 dark:text-rose-400 font-bold text-xs block sm:inline">(Votre choix incorrect)</span>' : ''}
+                        ${isRightAnswer ? '<span class="ml-2 text-emerald-700 dark:text-emerald-400 font-bold text-xs block sm:inline">(Bonne réponse)</span>' : ''}
                     </div>
                 </div>
             `;
@@ -814,12 +814,12 @@ function filterReviewQuestions(type) {
 
         card.innerHTML = `
             <div class="space-y-4">
-                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3">
                     <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600">
+                        <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
                             Q${idx + 1}
                         </span>
-                        <span class="text-xs text-slate-500 font-medium">
+                        <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">
                             ${q.category} &bull; ${q.topic}
                         </span>
                     </div>
@@ -828,7 +828,7 @@ function filterReviewQuestions(type) {
                     </div>
                 </div>
 
-                <h4 class="font-bold text-slate-900 text-sm sm:text-base leading-snug">
+                <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base leading-snug">
                     ${q.question}
                 </h4>
 
@@ -836,13 +836,13 @@ function filterReviewQuestions(type) {
                     ${optionsHTML}
                 </div>
 
-                <!-- Boîte d'explication pédagogique du cours -->
-                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-1.5">
-                    <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                <!-- Boîte d'explication pédagogique -->
+                <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-700 dark:text-slate-200 space-y-1.5">
+                    <div class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
                         <i class="fa-solid fa-lightbulb text-amber-500"></i>
                         <span>Explication & Référence du cours :</span>
                     </div>
-                    <p class="leading-relaxed text-slate-600">
+                    <p class="leading-relaxed text-slate-600 dark:text-slate-300">
                         ${q.explanation}
                     </p>
                 </div>
@@ -853,9 +853,9 @@ function filterReviewQuestions(type) {
 
     if (container.children.length === 0) {
         container.innerHTML = `
-            <div class="p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-500 space-y-2">
+            <div class="p-8 text-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 space-y-2">
                 <i class="fa-solid fa-champagne-glasses text-emerald-500 text-2xl"></i>
-                <p class="font-bold text-slate-700">Aucune erreur trouvée !</p>
+                <p class="font-bold text-slate-700 dark:text-slate-200">Aucune erreur trouvée !</p>
                 <p class="text-xs">Félicitations, vous n'avez fait aucune erreur dans cette catégorie.</p>
             </div>
         `;
@@ -878,8 +878,8 @@ function retakeFullQuiz() {
     }
     startElapsedTracker();
 
-    headerControls.classList.remove('hidden');
-    headerProgress.classList.remove('hidden');
+    if (headerControls) headerControls.classList.remove('hidden');
+    if (headerProgress) headerProgress.classList.remove('hidden');
     viewReview.classList.add('hidden');
     viewQuiz.classList.remove('hidden');
 
@@ -983,3 +983,36 @@ function triggerCelebration() {
         }, 300);
     }
 }
+// ajouter function pour dark mode 
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+    }
+    updateThemeIcon();
+}
+
+function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    updateThemeIcon();
+}
+
+function updateThemeIcon() {
+    const icon = document.getElementById('theme-icon');
+    if (!icon) return;
+    
+    if (document.documentElement.classList.contains('dark')) {
+        icon.className = 'fa-solid fa-sun text-sm text-amber-400';
+    } else {
+        icon.className = 'fa-solid fa-moon text-sm text-slate-600';
+    }
+}
+
+// Lancement auto au chargement
+initTheme();
