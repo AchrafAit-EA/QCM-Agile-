@@ -1015,4 +1015,10 @@ function updateThemeIcon() {
 }
 
 // Lancement auto au chargement
-initTheme();
+initTheme(); 
+// button de retour 
+    const finalPts = userAnswers.reduce((acc, ans, idx) => acc + (ans === activeQuestionsPool[idx].correctIndex ? 1 : 0), 0);
+    const prevBest = parseInt(localStorage.getItem('bestScore_p1') || '0');
+    if (activeQuestionsPool.length === 20 && finalPts > prevBest) {
+        localStorage.setItem('bestScore_p1', finalPts);
+    }
