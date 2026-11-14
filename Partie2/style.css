@@ -1,0 +1,104 @@
+/* dark mode pour partie 2 */
+html.dark body {
+    background-color: #090d16 !important;
+    color: #f8fafc !important;
+}
+
+/* Cartes principales */
+html.dark .bg-white,
+html.dark .bg-white\/90 {
+    background-color: #111827 !important;
+}
+
+/* Boutons d'options (A, B, C, D), grille (1..20) et champs */
+html.dark button.bg-white,
+html.dark .bg-slate-50,
+html.dark .bg-slate-100,
+html.dark select,
+html.dark option {
+    background-color: #1e293b !important;
+}
+
+html.dark button.bg-white:hover,
+html.dark .hover\:bg-slate-50:hover {
+    background-color: #283548 !important;
+}
+
+/* Textes noirs et gris foncés -> Blanc et gris clair */
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-slate-700 {
+    color: #f8fafc !important;
+}
+
+html.dark .text-slate-600,
+html.dark .text-slate-500 {
+    color: #94a3b8 !important;
+}
+
+/* Bordures */
+html.dark .border-slate-200,
+html.dark .border-slate-100,
+html.dark .divide-slate-100 > * {
+    border-color: #283548 !important;
+}
+
+/* Boutons répondus dans le tableau de bord */
+html.dark .bg-slate-800 {
+    background-color: #334155 !important;
+}
+
+/* Boîtes de succès (Vert) */
+html.dark .bg-emerald-50,
+html.dark .bg-emerald-50\/60,
+html.dark .bg-emerald-50\/40 {
+    background-color: rgba(16, 185, 129, 0.16) !important;
+}
+html.dark .text-emerald-950,
+html.dark .text-emerald-900,
+html.dark .text-emerald-700 {
+    color: #6ee7b7 !important;
+}
+html.dark .border-emerald-200,
+html.dark .border-emerald-300 {
+    border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Boîtes d'erreur (Rouge) */
+html.dark .bg-rose-50 {
+    background-color: rgba(244, 63, 94, 0.16) !important;
+}
+html.dark .text-rose-950,
+html.dark .text-rose-900,
+html.dark .text-rose-700,
+html.dark .text-rose-600 {
+    color: #fda4af !important;
+}
+html.dark .border-rose-200,
+html.dark .border-rose-300 {
+    border-color: rgba(244, 63, 94, 0.4) !important;
+}
+
+/* Boîtes Indigo (Formules & Badges) */
+html.dark .bg-indigo-50,
+html.dark .bg-indigo-100 {
+    background-color: rgba(99, 102, 241, 0.16) !important;
+}
+html.dark .text-indigo-700,
+html.dark .text-indigo-600 {
+    color: #a5b4fc !important;
+}
+html.dark .border-indigo-200 {
+    border-color: rgba(99, 102, 241, 0.35) !important;
+}
+
+/* Boîtes Jaune / Ambre (Marquage relecture & Examen) */
+html.dark .bg-amber-50,
+html.dark .bg-amber-100 {
+    background-color: rgba(245, 158, 11, 0.16) !important;
+}
+html.dark .text-amber-900,
+html.dark .text-amber-700,
+html.dark .text-amber-600 {
+    color: #fcd34d !important;
+}
